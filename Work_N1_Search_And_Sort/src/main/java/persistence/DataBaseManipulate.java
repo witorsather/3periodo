@@ -10,9 +10,9 @@ import java.util.List;
 
 public class DataBaseManipulate {
 
-    private String nameFile1 = "English_American_dic.txt";
-    private String nameFile2 = "Portuguese_Brazilian_dic.txt";
-    private String nameFile3 = "Dutch.txt";
+    public String nameFile1 = "English_American_dic.txt";
+    public String nameFile2 = "Portuguese_Brazilian_dic.txt";
+    public String nameFile3 = "Dutch.txt";
 
     public String[] ObterDicPortugues() throws Exception {
 
