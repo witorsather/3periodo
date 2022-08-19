@@ -12,7 +12,7 @@ public class DataBaseManipulate {
 
     public String nameFile1 = "English_American_dic.txt";
     public String nameFile2 = "Portuguese_Brazilian_dic.txt";
-    public String nameFile3 = "Dutch.txt";
+    public String nameFile3 = "Basque_dic.txt";
 
     public String[] ObterDicPortugues() throws Exception {
 
@@ -60,7 +60,7 @@ public class DataBaseManipulate {
 
     }
 
-    public String[] ObterDicDutch() throws Exception {
+    public String[] ObterDicBasque() throws Exception {
 
         try (BufferedReader br = new BufferedReader(new FileReader(nameFile3))) {
 
