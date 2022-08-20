@@ -13,13 +13,14 @@ public class DataBaseManipulate {
     public String nameFile1 = "English_American_dic.txt";
     public String nameFile2 = "Portuguese_Brazilian_dic.txt";
     public String nameFile3 = "Basque_dic.txt";
-
+   
     public String[] ObterDicPortugues() throws Exception {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(nameFile2))) {
+  
+        try ( BufferedReader br = new BufferedReader(new FileReader(nameFile2))) {
 
             String vet = br.readLine();
-            int tamanhoVetor = Integer.parseInt(vet);
+            int tamanhoVetor = Integer.parseInt(vet) - 1;
             String[] vetor = new String[tamanhoVetor];
             String linha = "";
 
@@ -40,10 +41,10 @@ public class DataBaseManipulate {
 
     public String[] ObterDicEnglish() throws Exception {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(nameFile1))) {
+        try ( BufferedReader br = new BufferedReader(new FileReader(nameFile1))) {
 
             String vet = br.readLine();
-            int tamanhoVetor = Integer.parseInt(vet);
+            int tamanhoVetor = Integer.parseInt(vet) - 1;
             String[] vetor = new String[tamanhoVetor];
             String linha = "";
 
@@ -62,10 +63,10 @@ public class DataBaseManipulate {
 
     public String[] ObterDicBasque() throws Exception {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(nameFile3))) {
+        try ( BufferedReader br = new BufferedReader(new FileReader(nameFile3))) {
 
             String vet = br.readLine();
-            int tamanhovetor = Integer.parseInt(vet);
+            int tamanhovetor = Integer.parseInt(vet) - 1;
             String[] vetor = new String[tamanhovetor];
             String linha = "";
 

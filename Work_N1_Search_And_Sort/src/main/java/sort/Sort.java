@@ -2,10 +2,11 @@ package sort;
 
 public class Sort {
 
-    public  String[] SelectionSort(String[] A) {
+    public String[] SelectionSort(String[] A) {
 
         int menorValor;
         String aux;
+
         for (int i = 0; i <= A.length - 2; i++) {
 
             menorValor = i;
@@ -25,6 +26,24 @@ public class Sort {
 
         return A;
 
+    }
+
+    public String[] BubbleSort(String[] B) {
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        return null;
     }
 
 }

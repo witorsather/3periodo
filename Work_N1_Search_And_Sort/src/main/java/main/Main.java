@@ -9,11 +9,11 @@ public class Main {
         
         DataBaseManipulate teste = new DataBaseManipulate();
         
-        String[] vet = teste.ObterDicBasque();
+        String[] vet = teste.ObterDicEnglish();
 
         Sort testeordecao = new Sort();
         
-        //testeordecao.SelectionSort(vet);
+        testeordecao.SelectionSort(vet);
         
         for (int i = 0; i < vet.length; i++) {
 
