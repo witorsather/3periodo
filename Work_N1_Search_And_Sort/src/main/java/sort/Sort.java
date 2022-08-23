@@ -2,48 +2,53 @@ package sort;
 
 public class Sort {
 
-    public String[] SelectionSort(String[] A) {
+    public String[] BubbleSort(String[] B) {
 
-        int menorValor;
-        String aux;
+        String aux = "";
 
-        for (int i = 0; i <= A.length - 2; i++) {
+        for (int i = 0; i < B.length; i++) {
 
-            menorValor = i;
+            for (int j = 0; j < B.length - 1; j++) {
 
-            for (int j = i + 1; j <= A.length - 1; j++) {
+                if (B[j].length() > B[j + 1].length()) {
 
-                if (A[j].length() < A[menorValor].length()) {
+                    aux = B[j];
+                    B[j] = B[j + 1];
+                    B[j + 1] = aux;
 
-                    menorValor = j;
                 }
+
             }
-            aux = A[menorValor];
-            A[menorValor] = A[i];
-            A[i] = aux;
 
         }
 
-        return A;
-
+        return B;
     }
 
-    public String[] BubbleSort(String[] B) {
+    public String[] InsertionSort(String[] C) {
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        String aux;
+
+        for (int i = 0; i < C.length; ++i) {
+
+            int j = i;
+
+            while (j > 0 && C[j - 1].length() > C[j].length()) {
+
+                aux = C[j];
+                C[j] = C[j - 1];
+                C[j - 1] = aux;
+                j = j - 1;
+
+            }
+        }
+        return C;
+    }
+
+    public String[] MergeSort(String[] D) {
         
         return null;
+
     }
 
 }
