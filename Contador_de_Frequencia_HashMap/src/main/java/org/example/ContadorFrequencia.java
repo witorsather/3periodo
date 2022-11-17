@@ -65,9 +65,6 @@ public class ContadorFrequencia {
         System.out.printf ("\nQuantidade de palavras:%d\nFrase esta vazia %b\n", mapa.size(), mapa.isEmpty());
     }
 
-    public static void main(String[] args)
-    {
-        new ContadorFrequencia();
-    }
+
 
 }

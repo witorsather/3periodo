@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Exercicios_sobre_HashMap_em_Java" />
+        <module name="Contador_de_Frequencia_HashMap" />
       </profile>
     </annotationProcessing>
   </component>
