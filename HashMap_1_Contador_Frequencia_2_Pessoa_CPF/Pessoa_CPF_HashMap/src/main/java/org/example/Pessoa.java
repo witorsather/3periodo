@@ -3,8 +3,16 @@ package org.example;
 import java.util.Date;
 
 public class Pessoa {
+	
+    public Pessoa(String cpf, String nome, Date dataDeNascimento, Double peso) {
+		super();
+		this.cpf = cpf;
+		this.nome = nome;
+		this.dataDeNascimento = dataDeNascimento;
+		this.peso = peso;
+	}
 
-    private String cpf;
+	private String cpf;
 
     private String nome;
 
@@ -44,13 +52,6 @@ public class Pessoa {
         this.peso = peso;
     }
 
-    public Pessoa(String cpf, String nome, Date dataDeNascimento, Double peso) {
-        this.cpf = cpf;
-        this.nome = nome;
-        this.dataDeNascimento = dataDeNascimento;
-        this.peso = peso;
-    }
-
     @Override
     public String toString() {
         return "Pessoa{" +
@@ -60,4 +61,5 @@ public class Pessoa {
                 ", peso=" + peso +
                 '}';
     }
+    
 }

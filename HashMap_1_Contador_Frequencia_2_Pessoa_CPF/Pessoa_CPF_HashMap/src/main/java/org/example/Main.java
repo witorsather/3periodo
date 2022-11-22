@@ -1,24 +1,29 @@
 package org.example;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
-    	Map<Integer, String> pessoaHm = new HashMap<>();
+    	Map<Integer, Pessoa> pessoaHm = new HashMap<>();
     	
         Scanner entrada = new Scanner(System.in);
         
-        String cpf = null;
+        String cpf = "1";
 
         String nome;
 
         String dataDeNascimento;
-
-        String peso;
+        
+        Double peso;
         
         int opc;
 
@@ -44,7 +49,15 @@ public class Main {
             
             System.out.println("Digite o peso da pessoa:");
             
-            peso = entrada.next();
+            peso = entrada.nextDouble();
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+
+            Date date = formatter.parse(dataDeNascimento);
+
+            System.out.println(date);
+            
+            pessoaHm.put(1, new Pessoa(cpf, nome, date, peso));
             
         }
 
