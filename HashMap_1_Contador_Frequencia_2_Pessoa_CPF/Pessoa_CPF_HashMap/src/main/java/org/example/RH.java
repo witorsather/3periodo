@@ -46,6 +46,8 @@ public class RH {
         
         Double peso;
         
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
         opcoes();
         
         do {
@@ -74,7 +76,7 @@ public class RH {
         			
         			peso = entrada.nextDouble();
         			
-        			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        			formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         			date = formatter.parse(dataDeNascimento);
         			
@@ -195,6 +197,42 @@ public class RH {
         		
         	case "e":
         		
+        		System.out.println("Informe o cpf para a busca:\n");
+        		
+        		String cpfBusca = entrada.next();
+        		
+        		System.out.println("Chave " + pessoaHm.get(cpfBusca).getCpf() + " : " +  pessoaHm.get(cpfBusca).toString());
+        		
+        		System.out.println("Informe o o novo nome:");
+        		
+        		String nomeReplace = entrada.next();
+        		
+        		System.out.println("Informe a nova data de nascimento: ");
+        		
+        		String dateReplaceInput = entrada.next();
+        		
+        		formatter = new SimpleDateFormat("dd/MM/yyyy");
+    	        
+        		Date dateReplace = formatter.parse(dateReplaceInput);
+        		
+        		System.out.println("Informe o novo peso: ");
+        		        		
+        		Double pesoReplace = entrada.nextDouble();
+        		
+        		Pessoa pessoaReplace = pessoaHm.get(cpfBusca);
+        		
+        		pessoaReplace.setNome(nomeReplace);
+
+        		pessoaReplace.setdataDeNascimento(dateReplace);
+        		
+        		pessoaReplace.setPeso(pesoReplace);
+        		
+        		pessoaHm.replace(cpfBusca, pessoaReplace);
+        		
+        		System.out.println("Pessoa alterada!");
+        		
+        		System.out.println("Chave " + pessoaHm.get(cpfBusca).getCpf() + " : " +  pessoaHm.get(cpfBusca).toString());
+        		
         		System.out.println();
         		
         		opcoes();
@@ -220,9 +258,7 @@ public class RH {
         			dataDeNascimento = "12/04/1987";
         			peso = 95.50;
         			
-        			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        	          //Parsing the given String to Date object
-        	          date = formatter.parse(dataDeNascimento);
+        			date = formatter.parse(dataDeNascimento);
         			
         			pessoaHm.put(cpf, new Pessoa(cpf, nome, date, peso));
         			
