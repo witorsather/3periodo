@@ -161,7 +161,6 @@ public class RH {
 	                
         		}
         		
-
         		System.out.printf("Pessoa mais idosa --> Nome: " + nomePessoaMaisIdosa + ", CPF: " + cpfMaisIdosa + "\n");
 
         		System.out.printf("Pessoa mais nova --> Nome: " + nomePessoaMaisNova + ", CPF: " + cpfPessoaMaisNova + "\n");
@@ -171,6 +170,24 @@ public class RH {
         		opcoes();
         		
         	case "d":
+        		
+        		Double somaPeso = 0.0;
+        		
+        		int cont = 0;
+        		
+        		for (Entry<String, Pessoa> entry : pessoaHm.entrySet()) {
+        			
+        		    System.out.println("Nome: " + entry.getValue().getNome() + ", Peso: " + entry.getValue().getPeso());
+        		    
+        		    somaPeso += entry.getValue().getPeso();
+        		    
+        		    cont++;
+        		    
+        		}
+  
+        		Double media = somaPeso/cont;
+        		
+        		System.out.printf("A média de peso deles é: %.2f \n", media);
         		
         		System.out.println();
         		
