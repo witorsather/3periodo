@@ -39,7 +39,7 @@ public class Municipio {
 
 	@Override
 	public String toString() {
-		return "Municipio [codUf=" + codUf + ", cod=" + cod + ", nome=" + nome + "]";
+		return "Municipio [codUf = " + codUf + " | cod = " + cod + "| nome = " + nome + "]";
 	}
 	
 }

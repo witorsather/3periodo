@@ -15,7 +15,7 @@ public class Estado {
 
 	@Override
 	public String toString() {
-		return "Estado [cod=" + cod + ", nome=" + nome + ", sigla=" + sigla + "]";
+		return "Estado [cod = " + cod + " | nome = " + nome + " | sigla = " + sigla + "]";
 	}
 
 	public String getCod() {
