@@ -4,11 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Map.Entry;
 
 public class Main {
+	
+	static String opcao;
+	static Scanner entrada = new Scanner(System.in);
+	static InputStreamReader r = new InputStreamReader(System.in); 
+	static BufferedReader br = new BufferedReader(r);
 	
 	static Map<Integer, Municipio> municipioMap = new HashMap<Integer, Municipio>();
 
@@ -23,7 +30,75 @@ public class Main {
         listaDeMunicipios();
         
         listaDeEstados();
-            
+        
+        
+		do {
+			
+        	switch (opcao) {
+        	
+	        	case "a":
+	        		
+	        		
+	        		
+	        		opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        		
+	        	case "b":
+	        		
+	        		
+	        		
+	        		opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        		
+	        	case "c":
+	        		
+	        		opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        		
+	        	case "d":
+	        			    	        
+	        		opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        	case "q":
+	    	        
+	        		opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        		
+	        	case "t":
+        			
+        			opcoes();
+	        		
+	        		System.out.println("");
+	        		
+	        		break;
+	        		
+	        	default:
+	        		
+	        		break;
+        	}
+        	
+		} while (!opcao.equals("q"));
+		
 	}
 	
 	public static void preecherHashMapMunicipio() throws FileNotFoundException, IOException{
@@ -117,5 +192,23 @@ public class Main {
 		}
 
 	}
+	
+    public static void opcoes() {
+    	
+    	System.out.println("Digite uma das opções");
+    	
+        System.out.println("a. Deve permitir acrescentar um novo CD ou DVD às entradas já existentes;");
+        
+        System.out.println("b. Deve permitir a busca por um CD ou DVD pelo seu nome;");
+        
+        System.out.println("c. Deve permitir procurar CDs e DVDs pelo nome do artista ou pelo nome do Diretor;");
+        
+        System.out.println("d. Deve permitir listar (toString) toda a informação presente nos CDs e DVDs.");
+        
+        opcao = entrada.next();
+        
+        System.out.println();
+    
+    }
 	
 }
