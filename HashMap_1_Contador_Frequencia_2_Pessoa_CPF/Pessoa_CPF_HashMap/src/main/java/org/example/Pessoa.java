@@ -1,8 +1,11 @@
 package org.example;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Pessoa {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
     public Pessoa(String cpf, String nome, Date dataDeNascimento, Double peso) {
 		super();
@@ -56,7 +59,7 @@ public class Pessoa {
     public String toString() {
         return  "cpf = '" + cpf + '\'' +
                 ", nome = '" + nome + '\'' +
-                ", dataDeNascimento = " + dataDeNascimento +
+                ", data de nascimento = " + formatter.format(dataDeNascimento) +
                 ", peso = " + peso;
     }
     

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Period;
@@ -238,6 +239,16 @@ public class RH {
         		opcoes();
         		
         	case "f":
+        		
+        		System.out.println("Informe o cpf para excluir:\n");
+        		
+        		String cpfBuscaExcluir = entrada.next();
+        		
+        		System.out.println("Chave " + pessoaHm.get(cpfBuscaExcluir).getCpf() + " : " +  pessoaHm.get(cpfBuscaExcluir).toString());
+        		
+        		pessoaHm.remove(cpfBuscaExcluir);
+        		
+        		System.out.println("Pessoa excluída!");
         		
         		System.out.println();
         		
