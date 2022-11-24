@@ -54,12 +54,10 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "cpf='" + cpf + '\'' +
-                ", nome='" + nome + '\'' +
-                ", dataDeNascimento=" + dataDeNascimento +
-                ", peso=" + peso +
-                '}';
+        return  "cpf = '" + cpf + '\'' +
+                ", nome = '" + nome + '\'' +
+                ", dataDeNascimento = " + dataDeNascimento +
+                ", peso = " + peso;
     }
     
 }
