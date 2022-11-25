@@ -6,6 +6,10 @@ public class Municipio {
 	public String cod;
 	public String nome;
 	
+	public int compareTo(Municipio municipio) {
+        return this.nome.compareTo(municipio.getNome());
+    }
+	
 	public Municipio(String codUf, String cod, String nome) {
 		super();
 		this.codUf = codUf;

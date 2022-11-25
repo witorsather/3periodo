@@ -5,10 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Map.Entry;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
 	
@@ -19,18 +24,16 @@ public class Main {
 	
 	static Map<Integer, Municipio> municipioMap = new HashMap<Integer, Municipio>();
 
+	static TreeMap<Municipio, Municipio> map2 = new TreeMap<>(new AccordingMarks());
+	
 	static Map<Integer, Estado> estadoMap = new HashMap<Integer, Estado>();
     
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
         preecherHashMapMunicipio();
-        
         preecherHashMapEstado();
         
-        listaDeMunicipios();
-        
-        listaDeEstados();
-        
+        opcoes();
         
 		do {
 			
@@ -38,7 +41,9 @@ public class Main {
         	
 	        	case "a":
 	        		
+	        		System.out.println("Segue lista de estados abaixo:");
 	        		
+	        		listaDeEstadosAgrupadosPorSigla();
 	        		
 	        		opcoes();
 	        		
@@ -50,6 +55,14 @@ public class Main {
 	        	case "b":
 	        		
 	        		
+//	        		TreeMap<Integer, Municipio> map = new TreeMap<Integer, Municipio>(municipioMap);
+	        		
+	   
+	        		for (Entry<Municipio, Municipio> entry : map2.entrySet()) {
+	        				
+	        			System.out.println(entry.getValue().toString());
+	        				
+	        		}
 	        		
 	        		opcoes();
 	        		
@@ -126,6 +139,7 @@ public class Main {
 			        Integer codInteger = Integer.parseInt(cod);
 			        
 			        municipioMap.put(codInteger, new Municipio(codUf, cod, nome));
+			        map2.put(new Municipio(codUf, cod, nome), new Municipio(codUf, cod, nome));
 				}
 		        
 		        contLinha++;
@@ -193,17 +207,37 @@ public class Main {
 
 	}
 	
+	public static void listaDeEstadosAgrupadosPorSigla() {
+
+		List<String> listaSiglaEstado = new ArrayList<String>();
+		
+		for (Entry<Integer, Estado> entry : estadoMap.entrySet()) {
+			
+			listaSiglaEstado.add(entry.getValue().sigla);
+	    
+		}
+		
+		Collections.sort(listaSiglaEstado);
+		
+		for (int i = 0; i < listaSiglaEstado.size(); i++){
+            System.out.println(listaSiglaEstado.get(i));
+        }
+		
+	}
+	
     public static void opcoes() {
     	
     	System.out.println("Digite uma das opções");
     	
-        System.out.println("a. Deve permitir acrescentar um novo CD ou DVD às entradas já existentes;");
+        System.out.println("a) Listar todos os Estados agrupados SIGLA.");
         
-        System.out.println("b. Deve permitir a busca por um CD ou DVD pelo seu nome;");
+        System.out.println("b) Listar todos os municípios agrupados por Código do Estado (COD UF).");
         
-        System.out.println("c. Deve permitir procurar CDs e DVDs pelo nome do artista ou pelo nome do Diretor;");
+        System.out.println("c) Listar municípios por SIGLA. O programa deve ler uma SIGLA e listar os municípios pertencentes aquele Estado.");
         
-        System.out.println("d. Deve permitir listar (toString) toda a informação presente nos CDs e DVDs.");
+        System.out.println("d) Buscar Município por Código Municipal, apresentando todas as informações do Município e do Estado a que aquele Município pertence.");
+        
+        System.out.println("e) Retornar um ranking decrescente de Estados de acordo com a quantidade de municípios pertencentes a eles, agrupados por SIGLA.");
         
         opcao = entrada.next();
         
