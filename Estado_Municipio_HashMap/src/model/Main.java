@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -22,17 +22,14 @@ public class Main {
 	static InputStreamReader r = new InputStreamReader(System.in); 
 	static BufferedReader br = new BufferedReader(r);
 	
-	static Map<Integer, Municipio> municipioMap = new HashMap<Integer, Municipio>();
+	static HashMap<String, Estado> estados = new HashMap<>();
 
-	static TreeMap<Municipio, Municipio> map2 = new TreeMap<>(new AccordingMarks());
-	
-	static Map<Integer, Estado> estadoMap = new HashMap<Integer, Estado>();
+	static HashMap<Integer, Municipio> municipios = new HashMap<>();
     
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
+		preecherHashMapEstado();
         preecherHashMapMunicipio();
-        preecherHashMapEstado();
-        
         opcoes();
         
 		do {
@@ -43,7 +40,7 @@ public class Main {
 	        		
 	        		System.out.println("Segue lista de estados abaixo:");
 	        		
-	        		listaDeEstadosAgrupadosPorSigla();
+	        		listarEstados();
 	        		
 	        		opcoes();
 	        		
@@ -54,15 +51,8 @@ public class Main {
 	        		
 	        	case "b":
 	        		
-	        		
-//	        		TreeMap<Integer, Municipio> map = new TreeMap<Integer, Municipio>(municipioMap);
-	        		
-	   
-	        		for (Entry<Municipio, Municipio> entry : map2.entrySet()) {
-	        				
-	        			System.out.println(entry.getValue().toString());
-	        				
-	        		}
+	        		System.err.println("Listando municipios por código UF: ");
+	    			listarMunicipiosPorCodigoUF();
 	        		
 	        		opcoes();
 	        		
@@ -73,6 +63,10 @@ public class Main {
 	        		
 	        	case "c":
 	        		
+	        		System.err.println("Listando municipios por Sigla da UF: ");
+	        		
+	    			listarMunicipiosPorSigla();
+	        		
 	        		opcoes();
 	        		
 	        		System.out.println("");
@@ -81,6 +75,10 @@ public class Main {
 	        		
 	        		
 	        	case "d":
+	        		
+	        		System.err.println("Listando municipios por código de municipio ");
+	        		
+	        		listarMunicipiosPorCodMunicipal();
 	        			    	        
 	        		opcoes();
 	        		
@@ -88,7 +86,10 @@ public class Main {
 	        		
 	        		break;
 	        		
-	        	case "q":
+	        	case "e":
+	        		
+	        		System.err.println("Listando estados por quantidade de municipios de forma decrescente");
+	    			agruparEstados();
 	    	        
 	        		opcoes();
 	        		
@@ -99,6 +100,11 @@ public class Main {
 	        		
 	        	case "t":
         			
+	    			for (Map.Entry<Integer, Municipio> entry2 : municipios.entrySet()) {
+//	    					System.out.println(entry2.getValue().getCodigoUF());
+	    					System.out.println(entry2.getValue().toString());
+	    			}
+	        		
         			opcoes();
 	        		
 	        		System.out.println("");
@@ -114,39 +120,76 @@ public class Main {
 		
 	}
 	
+	private static void agruparEstados() {
+		HashMap<Estado, Integer> qtdMunicipios = new HashMap<>();
+		for (Map.Entry<Integer, Municipio> entry2 : municipios.entrySet()) {// * calculando a quantidade de municipios
+			Estado codigoUF = entry2.getValue().getCodigoUF();
+			if (qtdMunicipios.containsKey(codigoUF)) {
+				qtdMunicipios.replace(codigoUF, qtdMunicipios.get(codigoUF) + 1);
+			}
+		}
+		TreeMap<Integer, Estado> estadosOrdenados = new TreeMap<>();
+		for (Map.Entry<Estado, Integer> entry2 : qtdMunicipios.entrySet()) {
+			estadosOrdenados.put(entry2.getValue(), entry2.getKey());
+		}
+
+		for (Map.Entry<Integer, Estado> entry2 : estadosOrdenados.entrySet()) {
+			for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+				if (entry.getValue().getCodigo() == entry2.getKey()) {
+					System.out.println(entry.toString());
+				}
+			}
+		}
+	}
+	
+	private static void listarMunicipiosPorCodMunicipal() {
+
+		for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+			for (Map.Entry<Integer, Municipio> entry2 : municipios.entrySet())
+				System.out.println(entry2.getValue().toString());
+		}
+	}
+	
+	private static void listarMunicipiosPorSigla() {
+		ArrayList<String> siglas = new ArrayList<>();
+		for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+			siglas.add(entry.getValue().getSigla());
+		}
+		Collections.sort(siglas);
+		for (String i : siglas) {
+			for (Map.Entry<Integer, Municipio> entry2 : municipios.entrySet())
+				if (entry2.getValue().getCodigoUF().getSigla() == i) {
+					System.out.println(entry2.getValue().toString());
+				}
+		}
+	}
+	
 	public static void preecherHashMapMunicipio() throws FileNotFoundException, IOException{
 		
 		String csvFilePathMunicipios = "src/files/municipios.csv";
-		String codUf = null;
-		String cod = "0";
-		String nome = null;
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(csvFilePathMunicipios))) {
 		    
 			String line;
 		    
-			int contLinha = 0;
+			Integer contLinha = 0;
 			
 			while ((line = br.readLine()) != null) {
 				
 				if (contLinha > 0) {
 					
 					String[] values = line.split(",");
-			        codUf = values[0]; // 004
-			        cod = values[1];
-			        nome = values[2];
+					Integer codUf = Integer.parseInt(values[0]);; // 004
+					Integer codMunicipio = Integer.parseInt(values[1]);
+			        String nome = values[2];
+			        Municipio m = new Municipio(buscaEstadoPorCodigo(codUf), codMunicipio, nome);
+					municipios.put(codMunicipio, m);
 			        
-			        Integer codInteger = Integer.parseInt(cod);
-			        
-			        municipioMap.put(codInteger, new Municipio(codUf, cod, nome));
-			        map2.put(new Municipio(codUf, cod, nome), new Municipio(codUf, cod, nome));
 				}
 		        
 		        contLinha++;
 		        
 		    }
-			
-			
 			
 		}
 		
@@ -155,28 +198,24 @@ public class Main {
 	public static void preecherHashMapEstado() throws FileNotFoundException, IOException{
 		
 		String csvFilePathEstados = "src/files/estados.csv";
-		String cod = "";
-		String nome = "";
-		String sigla = "";
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(csvFilePathEstados))) {
 		    
 			String line;
 		    
-			int contLinha = 0;
+			Integer contLinha = 0;
 			
 			while ((line = br.readLine()) != null) {
 				
 				if (contLinha > 0) {
 					
 					String[] values = line.split(",");
-					cod = values[0]; // 004
-					nome = values[1];
-					sigla = values[2];
+					Integer codigo = Integer.parseInt(values[0]);
+					String nome = values[1];
+					String sigla = values[2];
 			        
-			        Integer codInteger = Integer.parseInt(cod);
-			        
-			        estadoMap.put(codInteger, new Estado(cod, nome, sigla));
+					Estado e = new Estado(codigo, nome, sigla);
+					estados.put(sigla, e);
 				}
 		        
 		        contLinha++;
@@ -187,42 +226,39 @@ public class Main {
 		
 	}
 	
-	public static void listaDeMunicipios() {
-		
-		for (Entry<Integer, Municipio> entry : municipioMap.entrySet()) {
-			
-			System.out.println("Chave " + entry.getKey() + " : " + entry.getValue().toString());
-	    
-		}
+	private static void listarEstados() {
 
+		for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+			System.out.println(entry.getValue().toString());
+		}
 	}
 	
-	public static void listaDeEstados() {
-		
-		for (Entry<Integer, Estado> entry : estadoMap.entrySet()) {
+	private static Estado buscaEstadoPorCodigo(Integer codigo) {
+		for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+			Estado val = entry.getValue();
 			
-			System.out.println("Chave " + entry.getKey() + " : " + entry.getValue().toString());
-	    
+			if (val.getCodigo() == codigo) {
+				return val;
+			}
 		}
-
+		return null;
 	}
 	
-	public static void listaDeEstadosAgrupadosPorSigla() {
+	private static void listarMunicipiosPorCodigoUF() {
 
-		List<String> listaSiglaEstado = new ArrayList<String>();
-		
-		for (Entry<Integer, Estado> entry : estadoMap.entrySet()) {
-			
-			listaSiglaEstado.add(entry.getValue().sigla);
-	    
+		ArrayList<Integer> codigosUF = new ArrayList<>();
+		for (Map.Entry<String, Estado> entry : estados.entrySet()) {
+			codigosUF.add(entry.getValue().getCodigo());
 		}
-		
-		Collections.sort(listaSiglaEstado);
-		
-		for (int i = 0; i < listaSiglaEstado.size(); i++){
-            System.out.println(listaSiglaEstado.get(i));
-        }
-		
+		Collections.sort(codigosUF);
+		for (Integer i : codigosUF) {
+			for (Map.Entry<Integer, Municipio> entry2 : municipios.entrySet())
+
+				System.out.println(entry2.getValue().toString());
+//				if (entry2.getValue().getCodigoUF().getCodigo() == i) {
+//					System.out.println(entry2.getValue().toString());
+//				}
+		}
 	}
 	
     public static void opcoes() {

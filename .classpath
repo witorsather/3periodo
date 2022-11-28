@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ArrayList/ArrayList/src"/>
+	<classpathentry kind="src" path="ArrayList/Atividade - Exe sobre ArrayList/Projeto_Java_Ativ_Exerc_ArrayList/src"/>
+	<classpathentry kind="src" path="CD_DVD_HashMap/src"/>
+	<classpathentry kind="src" path="Contador_de_Frequencia_HashMap/src/main/java"/>
+	<classpathentry kind="src" path="Estado_Municipio_HashMap/src"/>
+	<classpathentry kind="src" path="HashMapOrdenadoPorTreeMap/src"/>
+	<classpathentry kind="src" path="Pessoa_CPF_HashMap/src/main/java"/>
+	<classpathentry kind="output" path="ArrayList/Atividade - Exe sobre ArrayList/Projeto_Java_Ativ_Exerc_ArrayList/out/production/Projeto_Java_Ativ_Exerc_ArrayList"/>
+</classpath>

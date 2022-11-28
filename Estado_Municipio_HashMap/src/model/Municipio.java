@@ -1,36 +1,31 @@
 package model;
 
 public class Municipio {
-	
-	public String codUf;
-	public String cod;
-	public String nome;
-	
-	public int compareTo(Municipio municipio) {
-        return this.nome.compareTo(municipio.getNome());
-    }
-	
-	public Municipio(String codUf, String cod, String nome) {
+	private Estado UF;
+	private Integer codigo;
+	private String nome;
+
+	public Municipio(Estado UF, Integer codigo, String nome) {
 		super();
-		this.codUf = codUf;
-		this.cod = cod;
+		this.UF = UF;
+		this.codigo = codigo;
 		this.nome = nome;
 	}
 
-	public String getCodUf() {
-		return codUf;
+	public Estado getCodigoUF() {
+		return UF;
 	}
 
-	public void setCodUf(String codUf) {
-		this.codUf = codUf;
+	public void setCodigoUF(Estado UF) {
+		this.UF = UF;
 	}
 
-	public String getCod() {
-		return cod;
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public void setCod(String cod) {
-		this.cod = cod;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -43,7 +38,7 @@ public class Municipio {
 
 	@Override
 	public String toString() {
-		return "Municipio [codUf = " + codUf + " | cod = " + cod + "| nome = " + nome + "]";
+		return "Municipio [Estado="+UF.getSigla() + ", codigo=" + codigo + ", nome=" + nome + "]";
 	}
 	
 }

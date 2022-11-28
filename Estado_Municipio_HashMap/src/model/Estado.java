@@ -1,29 +1,24 @@
 package model;
 
 public class Estado {
-
-	public String cod;
-	public String nome;
-	public String sigla;
 	
-	public Estado(String cod, String nome, String sigla) {
+	private Integer codigo;
+	private String nome;
+	private String sigla;
+
+	public Estado(Integer codigo, String nome, String sigla) {
 		super();
-		this.cod = cod;
+		this.codigo = codigo;
 		this.nome = nome;
 		this.sigla = sigla;
 	}
 
-	@Override
-	public String toString() {
-		return "Estado [cod = " + cod + " | nome = " + nome + " | sigla = " + sigla + "]";
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public String getCod() {
-		return cod;
-	}
-
-	public void setCod(String cod) {
-		this.cod = cod;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -41,5 +36,10 @@ public class Estado {
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Estado [codigo=" + codigo + ", nome=" + nome + ", sigla=" + sigla + "]";
+	}
+
 }
