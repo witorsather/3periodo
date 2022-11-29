@@ -126,13 +126,22 @@ public class Main {
 			Estado codigoUF = entry2.getValue().getCodigoUF();
 			if (qtdMunicipios.containsKey(codigoUF)) {
 				qtdMunicipios.replace(codigoUF, qtdMunicipios.get(codigoUF) + 1);
+			}else {
+				qtdMunicipios.put(codigoUF, 1);
 			}
 		}
+		
+		for (Map.Entry<Estado, Integer> entry3 : qtdMunicipios.entrySet()) {
+			System.out.println(entry3.toString());
+		}
+		
+//		contar a quantidade de estados e salvar o nome do estado como chave
 		TreeMap<Integer, Estado> estadosOrdenados = new TreeMap<>();
 		for (Map.Entry<Estado, Integer> entry2 : qtdMunicipios.entrySet()) {
 			estadosOrdenados.put(entry2.getValue(), entry2.getKey());
 		}
-
+		
+//		contar a quantidade de estados e salvar quantidade de municipios como chave
 		for (Map.Entry<Integer, Estado> entry2 : estadosOrdenados.entrySet()) {
 			for (Map.Entry<String, Estado> entry : estados.entrySet()) {
 				if (entry.getValue().getCodigo() == entry2.getKey()) {
