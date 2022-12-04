@@ -144,9 +144,7 @@ public class Main {
 //		contar a quantidade de estados e salvar quantidade de municipios como chave
 		for (Map.Entry<Integer, Estado> entry2 : estadosOrdenados.entrySet()) {
 			for (Map.Entry<String, Estado> entry : estados.entrySet()) {
-				if (entry.getValue().getCodigo() == entry2.getKey()) {
 					System.out.println(entry.toString());
-				}
 			}
 		}
 	}
